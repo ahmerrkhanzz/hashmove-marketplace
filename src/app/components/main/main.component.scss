@@ -1,0 +1,82 @@
+@import "../../../assets/scss/_variables.scss";
+$extralargeDesktop: "(max-width: 1680px)";
+.homepage {
+  .home-banner-area {
+    width: 100%;
+    background-size: cover;
+    margin: 0rem;
+    padding: 0rem;
+    position: absolute;
+  }
+  .main-banner-tabs {
+    cursor: pointer;
+    .banner-tabs {
+      background-color: #007870;
+      width: 190px;
+      height: 315px;
+      z-index: 11;
+      border-radius: 6px;
+      .v-btn {
+        background-color: $color-white;
+        width: 201px;
+        height: 64px;
+        font-family: $font-proxima;
+        font-weight: $font-weight-normal;
+        padding: 1.25rem 0.75rem;
+        border: 0px solid #aeaeae;
+        font-size: $font-size-base + .25rem;
+        color: #243748;
+        left: -31px;
+        position: relative;
+        top: 1.25rem;
+        margin-bottom: 0.425em;
+        transition: all 0.5s ease;
+        border-radius: 2px;
+        img {
+          margin-right: 5px;
+          position: relative;
+          top: -1px;
+          width: 24px;
+          float: left;
+        }
+        span {
+          position: relative;
+          top: 2px;
+          user-select: none;
+          float: left;
+        }
+        &.active {
+          color: $btn-default-sky-blue;
+          left: -25px !important;
+        }
+      }
+      .v-btn:hover {
+        color: $btn-default-sky-blue;
+        width: 201px;
+        left: -25px;
+      }
+    }
+    span {
+      position: relative;
+      top: 2px;
+      user-select: none;
+    }
+    &.active {
+      color: $btn-default-sky-blue;
+      left: -25px !important;
+    }
+  }
+  .v-btn:hover {
+    color: $btn-default-sky-blue;
+    width: 201px;
+    left: -25px;
+  }
+}
+
+.main-container-box {
+  margin-right: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}

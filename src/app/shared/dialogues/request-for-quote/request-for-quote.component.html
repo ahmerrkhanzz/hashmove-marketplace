@@ -1,0 +1,470 @@
+<div class="request-for-quote">
+  <div class="user-modal animated fadeIn">
+    <div class="modal-header">
+      <h4 class="user-modal-title">Request for Quote</h4>
+      <a class="pointer crossIcon" aria-label="Close" (click)="closeModal('close')">
+        <img src="../../../../assets/images/icons/icon_close.svg" alt="close">
+      </a>
+
+
+    </div>
+    <div class="modal-body overflow-scroll">
+      <div class="row">
+        <div class="col-12">
+          <div class="row form-group">
+            <div class="col-md-6 col-12">
+              <label for="" class="w-100">Location</label>
+              <div class="input-group">
+                <div class="input-group-text p-0">
+                  <img src="../../../../assets/images/icons/Icons_Location.svg" class="p-0 pl-2 icon-size-20">
+                </div>
+                <input #elCity id="typeahead-basic" [ngClass]="city.imageName ? 'hasImage' : ''" name="location"
+                  type="text" class="form-control hasImage pl-4" (keyup)="onCitySelect($event, rt)"
+                  [ngbTypeahead]="search2" [inputFormatter]="formatter" [resultTemplate]="rt" placeholder="City" />
+                <ng-template #rt let-r="result" let-t="term">
+                  <div class="d-inline-block icon-size-16 mr-2">
+                    <img src="{{'../../../../assets/images/icons/flags/4x3/' + (r.imageName | lowercase) + '.svg'}}"
+                      style="max-width:100%;max-height:100%;">
+                  </div>
+                  {{r.title}}
+                </ng-template>
+              </div>
+            </div>
+            <div class="col-md-6 col-12">
+              <div class="input-group">
+                <label for="" class="w-100">Neighbourhood</label>
+                <input class="form-control" type="text" placeholder="Neighbourhood" [(ngModel)]="neightBourhood" />
+              </div>
+            </div>
+          </div>
+          <div class="row form-group">
+            <div *ngIf="selectedWarehouseType !== 'FULL'" class="col-md-6 col-12">
+              <div class="input-group">
+                <label for="" class="w-100">Renting Period</label>
+                <input diabled="true" id="dpicker" autocomplete="off" #calenderField class="form-control"
+                  placeholder="From - To" name="dp" ngbDatepicker [dayTemplate]="t" [outsideDays]="true" [minDate]="minDate"
+                  [navigation]="false" [autoClose]="false" [displayMonths]="2"
+                  #d="ngbDatepicker" placement="bottom" (click)="showbutton()" />
+                <ng-template #t let-date="date" let-focused="focused" container="body">
+                  <span class="custom-day"
+                    [class.range]="isFrom(date) || isTo(date) || isInside(date) || isHovered(date)"
+                    [class.faded]="isHovered(date) || isInside(date)" (click)="onDateSelection(date)"
+                    (mouseenter)="hoveredDate = date" (mouseleave)="hoveredDate = null">
+                    {{ date.day }}
+                  </span>
+                </ng-template>
+              </div>
+            </div>
+            <div class="col-md-6 col-12">
+              <div class="input-group">
+                <label class="input-label">Warehouse Type</label>
+                <div ngbDropdown class="d-inline-block w-100 custom-dropdown">
+                  <button class="btn btn-outline-primary w-100" id="dropdownBasic1" ngbDropdownToggle>
+                    <span class="text-truncate">{{(selectedWarehouseType)?selectedWarehouseType:'Please Select'}}</span>
+                  </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="w-100 custom-dropdown-item-main">
+                    <button class="dropdown-item" *ngFor="let wType of warehousetypes" (click)="onTypeSelect(wType)">
+                      <span class="meter">{{wType}}</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="advance-option">
+        <ngb-tabset (tabChange)="tabChangeEvent($event)" [justify]="currentJustify" class="secondaryTabs"
+          [activeId]="subWarehouseTabID">
+          <ngb-tab id="by_pallet" *ngIf="selectedWarehouseType !== 'FULL'">
+            <ng-template ngbTabTitle>
+              <div class="tab">
+                <svg id="91048642-36e2-4f45-83ab-8ceede306ae3" data-name="Layer 1" class="icon-size-14 mr-2 mt-2"
+                  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <defs>
+                    <style>
+                      
+                    </style>
+                  </defs>
+                  <title></title>
+                  <g id="c213bd94-fff4-4595-8851-249fa7716951" data-name="RMdIWM.tif">
+                    <path class="7e0e4eda-9161-4ec8-8239-38bcf2454e29"
+                      d="M.013,22.963V18.728c0-.572.02-1.145,0-1.716a21.784,21.784,0,0,1,.4-3.931c.374-2.717.772-5.431,1.161-8.145.185-1.3.373-2.591.561-3.9H21.855c.1.708.206,1.414.307,2.121q.544,3.81,1.09,7.62c.237,1.655.519,3.306.7,4.968a26.438,26.438,0,0,1,.025,2.774q0,2.058,0,4.117v.33H17.991V21.01H6.014v1.953Zm21.945-1.992V17.019H2.031V20.96H4.02V19.011H19.99v1.96Zm-5.037-5.987L16.049,3.04h-3.03V14.984Zm-5.95,0V3.037H7.941L7.069,14.986ZM18.05,3.032l.87,11.947h2.9c-.573-4-1.142-7.969-1.712-11.947ZM5.067,14.98,5.94,3.034H3.884L2.174,14.98Z" />
+                  </g>
+                </svg>
+
+                <span>By Pallet</span>
+              </div>
+            </ng-template>
+            <ng-template ngbTabContent>
+              <!-- Area Required Unit -->
+              <div class="form-row mt-4">
+                <div class="col-4 d-flex input-counter">
+                  <div class="input-group">
+                    <label class="form-control sr-only">Quantity</label>
+                    <div class="input-group-prepend pointer" (click)="counter('minus')">
+                      <span class="input-group-text">
+                        <i class="fa fa-minus"></i>
+                      </span>
+                    </div>
+                    <input type="number" min="0" step="1" [(ngModel)]="warehouseData.quantity" class="form-control"
+                      placeholder="0" />
+                    <div class="input-group-append pointer" (click)="counter('plus')">
+                      <span class="input-group-text">
+                        <i class="fa fa-plus"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4 d-flex input-dropdown">
+                  <div class="input-group">
+                    <input type="number" min="0" step="1" [(ngModel)]="warehouseData.totalWeight" class="form-control"
+                      placeholder="Total Weight (optional)" />
+                    <div class="input-group-append">
+                      <select #elWeightTotal class="form-control" name="weightUnit"
+                        (change)="onUnitChange($event.target.value, 'totalWeight')">
+                        <option value="{{unit.UnitTypeID}}" *ngFor="let unit of weightUnits"
+                          [selected]="(unit.UnitTypeID === selectedWeightUnitID) ? true : false">
+                          {{unit.UnitTypeShortName}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--/ Area Required Unit -->
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab id="by_area" *ngIf="selectedWarehouseType !== 'FULL'">
+            <ng-template ngbTabTitle>
+              <div class="tab">
+                <svg id="daf2a9d0-ed1e-40c3-8dc2-534f350396d2" class="icon-size-14 mr-2 mt-2" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 16 16">
+                  <defs>
+                    <style>
+                      
+                    </style>
+                  </defs>
+                  <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" points="16 10 10 16 16 16 16 10" />
+                  <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" points="0 6 6 0 0 0 0 6" />
+                  <rect class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" x="7.317" y="-2.63" width="1.367" height="21.261"
+                    transform="translate(-3.314 8) rotate(-45)" />
+                  <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" points="2 14 2 9 0 9 0 16 7 16 7 14 2 14" />
+                  <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" points="14 2 14 6 16 6 16 0 10 0 10 2 14 2" />
+                </svg>
+                <span>By Area</span>
+              </div>
+            </ng-template>
+            <ng-template ngbTabContent>
+              <!-- Area Required Unit -->
+              <div class="form-row mt-4">
+                <div class="col-4 d-flex input-dropdown">
+                  <div class="input-group">
+                    <input type="number" min="0" step="1" [(ngModel)]="warehouseData.area" class="form-control"
+                      placeholder="Total Area Required" />
+                    <div class="input-group-append">
+                      <select #elArea class="form-control" name="areaUnit"
+                        (change)="onUnitChange($event.target.value, 'area')">
+                        <option value="{{unit.UnitTypeID}}" *ngFor="let unit of areaUnits"
+                          [selected]="(unit.UnitTypeID === selectedAreaUnitID) ? true : false">
+                          {{unit.UnitTypeShortName}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4 d-flex input-dropdown">
+                  <div class="input-group">
+                    <input type="number" min="0" step="1" [(ngModel)]="warehouseData.totalWeight" class="form-control"
+                      placeholder="Total Weight (optional)" />
+                    <div class="input-group-append">
+                      <select #elWeightTotal class="form-control" name="weightUnit"
+                        (change)="onUnitChange($event.target.value, 'totalWeight')">
+                        <option value="{{unit.UnitTypeID}}" *ngFor="let unit of weightUnits"
+                          [selected]="(unit.UnitTypeID === selectedWeightUnitID) ? true : false">
+                          {{unit.UnitTypeShortName}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--/ Area Required Unit -->
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab id="by_unit" *ngIf="!isTcsWarehouse && selectedWarehouseType !== 'FULL'">
+            <ng-template ngbTabTitle>
+              <div class="tab">
+                <!-- Generator: Adobe Illustrator 23.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 32 32"
+                  style="enable-background:new 0 0 32 32;" xml:space="preserve">
+                  <style type="text/css">
+                    .st0 {
+                      fill: #abb6be;
+                    }
+
+                    .st1 {
+                      fill: #FFFFFF;
+                    }
+
+                    .st2 {
+                      fill: none;
+                      stroke: #abb6be;
+                      stroke-width: 3;
+                      stroke-miterlimit: 10;
+                    }
+                  </style>
+                  <g>
+                    <rect x="4.75" y="4.75" transform="matrix(0.7071 0.7071 -0.7071 0.7071 16 -6.6274)" class="st0"
+                      width="22.5" height="22.5" />
+
+                    <rect x="5.5" y="5.5" transform="matrix(-9.941344e-09 1 -1 -9.941344e-09 32 -7.297966e-07)"
+                      class="st1" width="21" height="21" />
+                    <line class="st2" x1="16" y1="4.87" x2="16" y2="27.13" />
+                    <line class="st2" x1="27.13" y1="16" x2="4.87" y2="16" />
+                  </g>
+                  <g>
+                  </g>
+                  <g>
+                  </g>
+                  <g>
+                  </g>
+                  <g>
+                  </g>
+                  <g>
+                  </g>
+                </svg>
+                <span>By Unit</span>
+              </div>
+            </ng-template>
+            <ng-template ngbTabContent>
+              <!-- Form Unit -->
+              <div class="form-row mt-4">
+                <div class="col d-flex input-dropdown">
+                  <div class="input-group">
+                    <input type="number" min="0" step="1" [(ngModel)]="warehouseData.length"
+                      class="form-control border-right" placeholder="L" />
+                    <input type="number" [(ngModel)]="warehouseData.width" class="form-control border-right" min="0"
+                      step="1" placeholder="W">
+                    <input type="number" min="0" step="1" [(ngModel)]="warehouseData.height"
+                      class="form-control border-right" placeholder="H" />
+                    <div class="input-group-append">
+                      <select #elVolume name="" class="form-control"
+                        (change)="onUnitChange($event.target.value, 'length')">
+                        <option *ngFor="let unit of lengthUnits" value="{{unit.UnitTypeID}}"
+                          [selected]="(unit.UnitTypeID === selectedLengthUnitID) ? true : false">
+                          {{unit.UnitTypeShortName}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col input-counter">
+                  <div class="input-group">
+                    <label class="form-control sr-only">Quantity</label>
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="fa fa-minus" (click)="counter('minus', $event)"></i>
+                      </span>
+                    </div>
+                    <input type="number" min="0" step="1" [(ngModel)]="warehouseData.quantity" minlength="1"
+                      maxlength="3" class="form-control quantity text-center p-0" name="counter" placeholder="0" />
+                    <div class="input-group-append">
+                      <span class="input-group-text">
+                        <i class="fa fa-plus" (click)="counter('plus', $event)"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col d-flex input-dropdown">
+                  <div class="input-group">
+                    <input type="number" min="0" step="1" [(ngModel)]="warehouseData.totalWeight" class="form-control"
+                      placeholder="Unit Weight (Optional)" />
+                    <div class="input-group-append">
+                      <select #elWeight class="form-control" name="weightUnit"
+                        (change)="onUnitChange($event.target.value, 'totalWeight')">
+                        <option value="{{unit.UnitTypeID}}" *ngFor="let unit of weightUnits"
+                          [selected]="(unit.UnitTypeID === selectedWeightUnitID) ? true : false">
+                          {{unit.UnitTypeShortName}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--/ Form Unit -->
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab id="by_vol_weight" *ngIf="!isTcsWarehouse && selectedWarehouseType !== 'FULL'">
+            <ng-template ngbTabTitle>
+              <div class="tab">
+                <svg id="daf2a9d0-ed1e-40c3-8dc2-534f350396d2" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 16 16">
+                  <defs>
+                    <style>
+                      .bf3de19e-df40-4e76-a7cd-2f9395b9693a {
+                        fill: #abb6be;
+                      }
+                    </style>
+                  </defs>
+                  <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" points="16 10 10 16 16 16 16 10" />
+                  <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" points="0 6 6 0 0 0 0 6" />
+                  <rect class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" x="7.317" y="-2.63" width="1.367" height="21.261"
+                    transform="translate(-3.314 8) rotate(-45)" />
+                  <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" points="2 14 2 9 0 9 0 16 7 16 7 14 2 14" />
+                  <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" points="14 2 14 6 16 6 16 0 10 0 10 2 14 2" />
+                </svg>
+                <span>By Volume Weight</span>
+              </div>
+            </ng-template>
+            <ng-template ngbTabContent>
+              <!-- Total Weight Unit -->
+              <div class="form-row mt-4">
+                <div class="col-4 d-flex input-dropdown">
+                  <div class="input-group">
+                    <input type="number" min="0" step="1" [(ngModel)]="warehouseData.volume" class="form-control"
+                      placeholder="Volume" />
+                    <div class="input-group-append">
+                      <select #elVolTotal name="" class="form-control" name="volumeUnit"
+                        (change)="onUnitChange($event.target.value, 'volume')">
+                        <option value="{{unit.UnitTypeID}}" *ngFor="let unit of volumeUnits"
+                          [selected]="(unit.UnitTypeID === selectedVolumeUnitID) ? true : false">
+                          {{unit.UnitTypeShortName}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4 d-flex input-dropdown">
+                  <div class="input-group">
+                    <input type="number" min="0" step="1" [(ngModel)]="warehouseData.totalWeight" class="form-control"
+                      placeholder="Total Weight (optional)" />
+                    <div class="input-group-append">
+                      <select #elWeightTotal class="form-control" name="weightUnit"
+                        (change)="onUnitChange($event.target.value, 'totalWeight')">
+                        <option value="{{unit.UnitTypeID}}" *ngFor="let unit of weightUnits"
+                          [selected]="(unit.UnitTypeID === selectedWeightUnitID) ? true : false">
+                          {{unit.UnitTypeShortName}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--/ Total Weight Unit -->
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab id="full_warehouse" *ngIf="selectedWarehouseType === 'FULL'">
+            <ng-template ngbTabTitle>
+              <div class="title" placement="top">
+                <span>Full</span>
+              </div>
+            </ng-template>
+            <ng-template ngbTabContent>
+              <div style="position: relative;z-index:999;">
+                <div class="form-row warehouse-search mt-4 mb-5">
+                  <div class="col">
+                    <div class="input-group">
+                      <div ngbDropdown class="d-inline-block w-100 custom-dropdown">
+                        <button class="btn btn-outline-primary w-100" id="dropdownBasic1" ngbDropdownToggle>
+                          <!-- <img src="" alt=""> -->
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon-size-18 mr-3"
+                            id="daf2a9d0-ed1e-40c3-8dc2-534f350396d2" data-name="Layer 1" viewBox="0 0 16 16">
+                            <defs>
+                              <style>
+                                .bf3de19e-df40-4e76-a7cd-2f9395b9693a {
+                                  fill: #738593;
+                                }
+                              </style>
+                            </defs>
+                            <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" points="16 10 10 16 16 16 16 10" />
+                            <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" points="0 6 6 0 0 0 0 6" />
+                            <rect class="bf3de19e-df40-4e76-a7cd-2f9395b9693a" x="7.317" y="-2.63" width="1.367"
+                              height="21.261" transform="translate(-3.314 8) rotate(-45)" />
+                            <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a"
+                              points="2 14 2 9 0 9 0 16 7 16 7 14 2 14" />
+                            <polygon class="bf3de19e-df40-4e76-a7cd-2f9395b9693a"
+                              points="14 2 14 6 16 6 16 0 10 0 10 2 14 2" />
+                          </svg>
+                          <span class="text-truncate"
+                            [innerHTML]="(selected_srch_spce_req?.codeValDesc)?selected_srch_spce_req?.codeValDesc:'APPROX SPACE REQUIRED'"></span>
+                        </button>
+                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="w-100 custom-dropdown-item-main"
+                          [ngClass]="(srch_spce_req?.length) > 7 ? 'scrolling': 'no-scrolling'">
+                          <div slimScroll [options]="opts" [scrollEvents]="scrollEvents">
+                            <div style="max-width: 100%;max-height:180px;">
+                              <button class="dropdown-item"
+                                *ngFor="let searchOption of srch_spce_req ; let ind = index; trackBy: trackByFn"
+                                (click)="onDropDownEvent('srch_spce_req', searchOption)">
+                                <span class="meter" [innerHTML]="searchOption.codeValDesc"></span>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="input-group">
+                      <div ngbDropdown class="d-inline-block w-100 custom-dropdown">
+                        <button class="btn btn-outline-primary w-100" id="dropdownBasic1" ngbDropdownToggle>
+                          <img src="../../../../assets/images/icons/Icons_Calendar.svg" class="mr-3"
+                            style="max-width:22px;max-height:16px;">
+                          <span
+                            class="text-truncate">{{(selected_srch_lease_term?.codeValDesc)?selected_srch_lease_term?.codeValDesc:'MINIMUM LEASE TERM'}}</span>
+                        </button>
+                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="w-100 custom-dropdown-item-main"
+                          [ngClass]="(srch_lease_term?.length) > 6 ? 'scrolling': 'no-scrolling'">
+                          <div slimScroll [options]="opts" [scrollEvents]="scrollEvents">
+                            <div style="max-width: 100%;max-height:180px;">
+                              <button class="dropdown-item"
+                                *ngFor="let searchOption of srch_lease_term ; let ind = index; trackBy: trackByFn"
+                                (click)="onDropDownEvent('srch_lease_term', searchOption)">
+                                <span class="meter">{{searchOption.codeValDesc}}</span>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="row">
+                  <div class="col mb-5 mt-5"></div>
+                </div> -->
+              </div>
+            </ng-template>
+          </ngb-tab>
+        </ngb-tabset>
+      </div>
+      <div class="checkboxes d-flex mb-4">
+        <div class="checkbox">
+          <input id='five' type='checkbox' [(ngModel)]="isDry" (ngModelChange)="onCheckChange($event, 'isDry')" />
+          <label for='five'>
+            <span></span>I Want Dry (Ambient) Storage
+          </label>
+        </div>
+        <div class="checkbox ml-3">
+          <input id='seven' type='checkbox' [(ngModel)]="isCold" (ngModelChange)="onCheckChange($event, 'isCold')" />
+          <label for='seven'>
+            <span></span>I Want Cold (Temperature Controlled) Storage
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Comment (Optional)</label>
+            <input class="form-control" [(ngModel)]="optComments" rows="3" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <button type="button" class="btn btn-primary hvr-sweep-to-right w-100 mt-4 btn-container mb-5"
+            (click)="onSubmit()">Submit Request</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+.no-scrolling {
+  .slimscroll-bar,
+  .slimscroll-grid {
+    display: none !important;
+  }
+}
+
+.truck {
+   .container-boxes {
+     .card-body {
+           transition-delay: 0s !important;
+               transition: 0.5s;
+       .lcl-counter {
+             transition-delay: 1s !important;            
+             transition: 0.5s;
+            
+       }
+     }
+   }
+}

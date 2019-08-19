@@ -1,0 +1,105 @@
+<div class="homepage" >
+  <!-- <div id="mySidebar" class="sidebar" [ngClass]="menuPanel ? 'activePanel' : ''">
+    <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+    <ul id="main-menu" class="main-menu">
+      <li class="menu-item">
+        <span class="menu-option" (click)="menuItem1()">
+          FCL
+          <img src="../../../assets/images/icons/icon_arrow_down.svg" alt="" class="icon-size-12" [ngClass]="subMenuItem1 ? '' : 'iconRotate animated fadeIn'">
+        </span>
+        <ul id="submenu" class="submenu" *ngIf="subMenuItem1">
+          <li>
+            <div class="form-group">
+              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="PICKUP LOCATION">
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="DELIVERY LOCATION">
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="DEPARTURE (OPTIONAL)">
+            </div>
+          </li>
+          <li></li>
+          <li></li>
+        </ul>
+      </li>
+      <li class="menu-item">
+        <span class="menu-option" (click)="menuItem2()">
+          LCL
+          <img src="../../../assets/images/icons/icon_arrow_down.svg" alt="" class="icon-size-12" [ngClass]="subMenuItem2 ? '' : 'iconRotate animated fadeIn'">
+        </span>
+        <ul id="submenu" class="submenu" *ngIf="subMenuItem2">
+          <li>
+            <div class="form-group">
+              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="PICKUP LOCATION">
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="DELIVERY LOCATION">
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="DEPARTURE (OPTIONAL)">
+            </div>
+          </li>
+          <li></li>
+          <li></li>
+        </ul>
+      </li>
+    </ul>
+  </div> -->
+
+  <div class="bannerSection">
+    <div class="col-lg-12 home-banner-area">
+      <app-animated-banner></app-animated-banner>
+    </div>
+    <div class="container">
+      <div class="d-flex flex-row-reverse" style="height: 696px;">
+        <div class="main-banner-tabs d-flex align-items-center">
+          <div class="banner-tabs">
+            <div class="v-btn" (click)="tabOpen('shipping', $event)" #shipTab [ngClass]="(shipping)?'active': ''">
+              <img src="../../../assets/images/icons/Icons_Ship.svg" width="22">
+              <span>Book a Shipment</span>
+            </div>
+            <div class="v-btn" (click)="tabOpen('warehousing', $event)" #warehouseTab [ngClass]="(wareHousing) ? 'active': ''">
+              <img src="../../../assets/images/icons/Icons_Warehousing.svg" width="22">
+              <span>Book a Warehouse</span>
+            </div>
+            <div class="v-btn" (click)="tabOpen('track', $event)" #trackShipTab>
+              <img src="../../../assets/images/icons/Icons_Tracking-08.svg" width="22">
+              <span>Track Your Shipment</span>
+            </div>
+            <div class="v-btn" (click)="tabOpen('partner', $event)" #partnerTab>
+              <img src="../../../assets/images/icons/Icons_User-10.svg" width="22">
+              <span>Partner With Us</span>
+            </div>
+          </div>
+        </div>
+        <div class="main-container-box">
+          <app-shipping (clickOutside)="CloseBoxes($event)" [exclude]="'.shipping, div.main-container-box, .v-btn, .overlay'" *ngIf="shipping"></app-shipping>
+          <app-warehousing class="w-100" *ngIf="wareHousing" (clickOutside)="CloseBoxes($event)" [exclude]="'.warehousing, div.main-container-box, .v-btn, .overlay'"></app-warehousing>
+        </div>
+      </div>
+    </div>
+    <!-- <div style="display: none" *ngFor="let imgx of mainImages">
+      <img async src="../../../assets/images/icons/{{imgx}}" alt="" style="display: none">
+    </div>
+    <div style="display: none" *ngFor="let imgx of subImages">
+      <img async src="../../../assets/images/shipping/{{imgx}}" alt="" style="display: none">
+    </div>
+    <div style="display: none" *ngFor="let imgx of subSubImages">
+      <img async src="../../../assets/images/shipping/{{imgx}}" alt="" style="display: none">
+    </div>
+    <div style="display: none" *ngFor="let imgx of containers">
+      <img async src="../../../assets/images/icons/{{imgx}}" alt="" style="display: none">
+    </div>
+  </div> -->
+  <app-usp-section></app-usp-section>
+  <app-why-hashmove></app-why-hashmove>
+  <div class="container">
+    <!-- Deals Removed By Sales:HM-6269 -->
+    <app-deals [page]="'home'"></app-deals>
+    <hr>
+    <app-specials></app-specials>
+    <hr>
+    <app-press></app-press>
+  </div>
+  <!-- <app-footer></app-footer> -->

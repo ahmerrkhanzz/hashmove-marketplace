@@ -1,0 +1,9 @@
+
+<app-header></app-header>
+<div class="main">
+    <router-outlet></router-outlet>
+</div>
+<app-footer *ngIf="homeFooter"></app-footer>
+<app-search-footer *ngIf="!homeFooter"></app-search-footer>
+<app-cookie-bar *ngIf="isCookeStored"></app-cookie-bar>
+

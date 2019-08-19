@@ -1,0 +1,133 @@
+@import "../../../../assets/scss/_variables";
+
+.request-for-quote {
+  .modal-header {
+    padding-top: 0.65rem;
+    padding-bottom: 0.65rem;
+  }
+
+  .modal-body {
+    &.overflow-scroll {
+      overflow-y: auto;
+      max-height: 600px;
+    }
+
+    .advance-option {
+      /deep/ .secondaryTabs {
+        .nav {
+          width: 75%;
+          margin: 0 auto;
+        }
+      }
+
+      .input-counter {
+        .input-group {
+          padding-left: 0.75rem;
+        }
+      }
+    }
+
+    label {
+      font-size: $font-size-medium;
+      color: $dark-grey-blue;
+      font-family: $font-proxima;
+      font-weight: $font-weight-normal;
+      text-transform: uppercase;
+    }
+
+    .form-control {
+      background-color: $white-color;
+      font-size: $font-size-medium;
+      font-family: $font-proxima;
+      font-weight: $font-weight-normal;
+      color: $dark-grey-blue;
+      border-radius: 4px;
+      min-height: 56px !important;
+    }
+
+    textarea {
+      height: 4.5rem;
+      width: 100%;
+    }
+
+    .input-dropdown {
+      .input-group-append {
+        width: 56px;
+        align-items: center;
+        justify-content: center;
+        border-left: 1px solid $input-border;
+
+        span {
+          font-size: $font-size-medium;
+          font-family: $font-proxima;
+          font-weight: $font-weight-mid;
+          color: $text-color-default;
+        }
+
+        input {
+          &::placeholder {
+            font-size: $font-size-base;
+          }
+        }
+
+        select {
+          font-size: $font-size-medium;
+          font-family: $font-proxima;
+          font-weight: $font-weight-mid;
+          color: $text-color-default;
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+          border: 0px;
+          text-transform: lowercase;
+          padding-left: 0.5rem;
+        }
+      }
+    }
+
+    .input-group-text {
+      background: none;
+      border: unset;
+
+
+      img {
+        top: 1.2rem;
+        z-index: 999;
+        position: absolute;
+      }
+    }
+
+    .btn-container {
+      font-size: $font-size-large;
+    }
+
+  }
+
+  .custom-day {
+    text-align: center;
+    padding: 0.185rem 0.25rem;
+    display: inline-block;
+    height: 2rem;
+    width: 2rem;
+  }
+
+  .custom-day.focused {
+    background-color: #e6e6e6;
+  }
+
+  .custom-day.range,
+  .custom-day:hover {
+    background-color: rgb(2, 117, 216);
+    color: white;
+  }
+
+  .custom-day.faded {
+    background-color: rgba(2, 117, 216, 0.5);
+  }
+}
+
+/deep/.input-group {
+  ngb-datepicker {
+    left: 0 !important;
+    width: 550px;
+  }
+}

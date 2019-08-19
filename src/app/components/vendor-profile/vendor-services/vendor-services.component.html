@@ -1,0 +1,24 @@
+<div class="vendor-services">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Services</h5>
+      <div class="vendor-services-tags">
+        <a href="javascript:;" *ngFor="let service of services?.LogisticServices" class="badge badge-pill badge-primary mb-3 mr-2 hvr-icon-back">
+          <img src="../../../assets/images/icons/services/{{service?.ImageName}}" alt="" class="icon-size-16 hvr-icon"> {{service?.LogServName}}
+        </a>
+      </div>
+      <div class="affiliation">
+        <h6 class="card-title mt-2">affiliations</h6>
+        <div class="affiliation-logo mt-2" *ngIf="services?.Affiliations">
+          <div class="col">
+            <div class="row">
+              <div class="col-2" *ngFor="let affiliation of services?.Affiliations">
+                <a href="{{affiliation?.AssnWithWebAdd}}" target="_blank"><img src="{{getUIImage(affiliation.AssnWithImage)}}" alt="" class="w-100"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

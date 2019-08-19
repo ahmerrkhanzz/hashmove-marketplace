@@ -1,0 +1,203 @@
+<footer class="main-footer footer-mobile">
+  <div class="container">
+    <div *ngFor="let item of footerData">
+      <button class="accordion">{{item.section}}</button>
+      <div class="panel">
+        <div class="list-group" *ngFor="let link of item.links">
+          <a *ngIf="link.url" href="{{link.url}}" title="{{link.name}}" target="_blank"
+            class="list-group-item list-group-item-action">{{link.name}}</a>
+          <a *ngIf="!link.url" href="javascript:;" onclick="return false;" title="{{link.name}}" target="_blank"
+            class="list-group-item list-group-item-action">{{link.name}}</a>
+        </div>
+      </div>
+    </div>
+
+    <div *ngFor="let item of footerData2">
+      <button class="accordion">{{item.section}}</button>
+      <div class="panel">
+        <div class="list-group" *ngFor="let link of item.links">
+          <a *ngIf="link?.url" href="{{link.url}}" title="{{link.name}}" target="_blank"
+            class="list-group-item list-group-item-action">{{link.name}}</a>
+          <a *ngIf="!link.url" href="javascript:;" onclick="return false;" title="{{link.name}}" target="_blank"
+            class="list-group-item list-group-item-action">{{link.name}}</a>
+        </div>
+      </div>
+    </div>
+
+    <button class="accordion">Door to Door Logistics</button>
+    <div class="panel">
+      <div class="row">
+        <div class="col-6">
+          <div class="list-group" *ngFor="let link of doorToDoor">
+            <a *ngIf="link?.url" href="{{link.url}}" title="{{link.name}}" target="_blank"
+              class="list-group-item list-group-item-action">{{link.name}}</a>
+            <a *ngIf="!link.url" href="javascript:;" onclick="return false;" title="{{link.name}}" target="_blank"
+              class="list-group-item list-group-item-action">{{link.name}}</a>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="list-group" *ngFor="let link of doorToDoor_2">
+            <a *ngIf="link?.url" href="{{link.url}}" title="{{link.name}}" target="_blank"
+              class="list-group-item list-group-item-action">{{link.name}}</a>
+            <a *ngIf="!link.url" href="javascript:;" onclick="return false;" title="{{link.name}}" target="_blank"
+              class="list-group-item list-group-item-action">{{link.name}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="accordion">Contact</button>
+    <div class="panel">
+      <div class="list-group">
+        <div class="list-group-item">
+          <address>
+            <strong>HEAD OFFICE</strong>
+            <br> 1450, Dubai Tech Zone
+            <br> Dubai Silicon Oasis
+            <br> Dubai, United Arab Emirates
+            <!-- <br>
+            <abbr title="Helpline">Helpline:</abbr> 971 4 1234567 -->
+            <br>
+            <a title="Send us a message" href="javascript:;">
+              <img src="../../../assets/images/message.png" alt="Send us a message"> Send us a message
+            </a>
+          </address>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<footer class="main-footer footer-desktop">
+  <div class="ibox ibox-bordered">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-6 col-md-3 mb-3" *ngFor="let item of footerData">
+          <h6>{{item.section}}</h6>
+          <div class="list-group" *ngFor="let link of item.links">
+            <a *ngIf="link?.url" href="{{link.url}}" title="{{link.name}}" target="_blank"
+              class=" list-group-item list-group-item-action link-hover-1">{{link.name}}</a>
+            <a *ngIf="!link.url" href="javascript:;" onclick="return false;" title="{{link.name}}" target="_blank"
+              class=" list-group-item list-group-item-action link-hover-1">{{link.name}}</a>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 mb-3">
+          <h6>Door to Door Logistics</h6>
+          <div class="row">
+            <div class="col-6">
+              <div class="list-group" *ngFor="let link of doorToDoor">
+                <a href="javascript:;" onclick="return false;" title="{{link.name}}" target="_blank"
+                  class="list-group-item list-group-item-action link-hover-1 ">{{link.name}}</a>
+              </div>
+
+            </div>
+            <div class="col-6">
+              <div class="list-group" *ngFor="let link of doorToDoor_2">
+                <a href="javascript:;" onclick="return false;" title="{{link.name}}" target="_blank"
+                  class="list-group-item list-group-item-action link-hover-1 ">{{link.name}}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ibox">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-6 col-md-3 mb-3" *ngFor="let item of footerData2">
+          <h6>{{item.section}}</h6>
+          <div class="list-group" *ngFor="let link of item.links ">
+            <a *ngIf="link?.url" href="{{link.url}}" title="{{link.name}}" target="_blank"
+              class="list-group-item list-group-item-action link-hover-1">{{link.name}}</a>
+            <a *ngIf="!link.url" href="javascript:;" onclick="return false;" title="{{link.name}}" target="_blank"
+              class="list-group-item list-group-item-action">{{link.name}}</a>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 mb-3">
+          <h6>Contact</h6>
+          <ul class="list-group contacts">
+            <li class="list-group-item list-group-item-succes">HEAD OFFICE</li>
+            <li class="list-group-item list-group-item-secondary ">1450, Dubai Tech Zone</li>
+            <li class="list-group-item list-group-item-info">Dubai Silicon Oasis</li>
+            <li class="list-group-item list-group-item-info ">Dubai, United Arab Emirates</li>
+            <!-- <li class="list-group-item list-group-item-info ">Helpline: 971 4 1234567</li> -->
+            <li class="list-group-item list-group-item-info">
+              <img src="../../../assets/images/message.png" alt="Send us a message">
+              <a title="Send us a message" class="link-hover-1 ml-2" href="mailto:support@hashmove.com">
+                Send us a message
+              </a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<footer class="mini-footer">
+  <div class="ibox">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+          <h6>Notify me for special offers</h6>
+          <div class="input-group">
+            <input type="text" class="form-control" name="email" [(ngModel)]="email" placeholder="Email Address">
+            <div class="input-group-prepend"
+              [ngClass]="notifyText.toLowerCase() === 'Error'.toLowerCase()?'btn-error':''">
+              <button class="btn btn-lg btn-primary custom-btn hvr-sweep-to-right" (click)="notify()">
+                <i class="fa fa-smile-o" *ngIf="notifyText.toLowerCase() === 'Success'.toLowerCase()"></i>
+                <i class="fa fa-frown-o" *ngIf="notifyText.toLowerCase() === 'Error'.toLowerCase()"></i>
+                <span
+                  [ngClass]="notifyText.toLowerCase() === 'Success'.toLowerCase()?'moveuptext':''">{{notifyText}}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 text-center">
+          <h6 [hidden]="true">In association with</h6>
+          <!-- <ngu-carousel [inputs]="carouselOne" class="providers-links" [hidden]="true">
+            <button NguCarouselPrev class='leftRs btn btn-transparent'>
+              <i class="fa fa-angle-left"></i>
+            </button>
+            <div NguCarouselItem *ngFor="let association of associations">
+              <div placement="top" ngbTooltip="{{association.title}}">
+                <a href="{{association.webURL}}" target="_blank">
+                  <img [src]="association?.displayImage" alt="association_image">
+                </a>
+              </div>
+            </div>
+            <button NguCarouselNext class='rightRs btn btn-transparent'>
+              <i class="fa fa-angle-right"></i>
+            </button>
+          </ngu-carousel> -->
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 connect">
+          <h6>Connect with us</h6>
+          <ul class="social-links">
+            <li *ngFor="let social of socialLinks">
+              <a href="{{social.codeValDesc}}" placement="top" target="_blank" ngbTooltip="{{social.codeValShortDesc}}">
+                <i [ngClass]="'fa fa-' + (social.codeValShortDesc | lowercase)"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</footer>
+<footer class="end-footer">
+  <div class="ibox">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="pull-left copyrights">© 2019 HashMove - All rights reserved.</div>
+          <div class="pull-right text-success" [hidden]="true">
+            <strong>SUPPLIER PORTAL</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
